@@ -1,0 +1,33 @@
+img {
+    height: 3rem;
+}
+
+.toolbar-body {
+    display: flex;
+    justify-content: space-between;
+    flex-basis: 100%;
+    align-items: center;
+}
+
+.botoes > button{
+    margin: 0px 5px 0px 5px;
+    font-size: large;
+}
+
+.botoes > button:hover{
+    background-color: #1A237E;
+    opacity: 75;
+}
+
+.button-title{
+    padding-left: 10px; 
+}
+
+.large-icon{
+    transform: scale(2);
+}
+
+.material-symbols-outlined{
+    font-size: 18px;
+}
+
