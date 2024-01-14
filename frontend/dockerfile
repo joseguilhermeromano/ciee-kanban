@@ -1,0 +1,12 @@
+FROM node:21.1.0-alpine as develop
+
+WORKDIR /app
+
+
+COPY package*.json ./
+RUN npm install -g @angular/cli
+COPY . .
+
+RUN npm install
+RUN ng update @angular/core
+RUN ng build

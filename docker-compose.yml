@@ -1,0 +1,31 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: .
+    restart: always
+    container_name: backend_ciee
+    volumes:
+      - ./backend:/app:rw
+    ports:
+      - 8080:8080
+    networks:
+      - netCieeLocal  
+    # command: /bin/sh -c "mvn package && java -jar target/kanban-1.0-SNAPSHOT.jar"
+
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     target: develop
+  #   restart: always
+  #   container_name: frontend_ciee
+  #   ports:
+  #     - 4200:4200
+  #   volumes:
+  #     - './frontend:/app'
+  #   networks:
+  #     - netCieeLocal
+
+networks:
+  netCieeLocal:
+    driver: bridge
