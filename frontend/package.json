@@ -17,18 +17,14 @@
     "@angular/forms": "^17.0.0",
     "@angular/material": "^17.0.5",
     "@angular/platform-browser": "^17.0.0",
-    "@angular/platform-browser-dynamic": "^17.0.9",
     "@angular/router": "^17.0.0",
-    "@syncfusion/ej2-angular-kanban": "^24.1.45",
-    "@syncfusion/ej2-base": "^24.1.42",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^17.0.10",
+    "@angular-devkit/build-angular": "^16.2.11",
     "@angular/cli": "^17.0.10",
-    "@angular/compiler-cli": "^17.0.0",
-    "typescript": "~5.2.2"
+    "@angular/compiler-cli": "^17.0.0"
   }
 }

@@ -1,12 +1,15 @@
-FROM node:21.1.0-alpine as develop
+# Use a imagem oficial do Node.js 21.5.0
+FROM node:21.0.0
 
+# Instale o Angular CLI globalmente
+RUN npm install -g @angular/cli
+
+# Defina o diretório de trabalho no contêiner e ajuste as permissões
+RUN mkdir -p /app 
 WORKDIR /app
 
-
-COPY package*.json ./
-RUN npm install -g @angular/cli
+# Copie todo o conteúdo do diretório atual para o diretório de trabalho no contêiner
 COPY . .
 
-RUN npm install
-RUN ng update @angular/core
-RUN ng build
+# Exponha a porta do aplicativo (ajuste conforme necessário)
+EXPOSE 4200
