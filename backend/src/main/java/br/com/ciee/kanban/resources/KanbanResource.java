@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/tarefas")
+@RequestMapping(value = "/professionals")
 public class KanbanResource {
 
     @Autowired
@@ -23,15 +23,9 @@ public class KanbanResource {
         return ResponseEntity.ok().body(obj);
     }
 
-    @GetMapping(value = "/abertas")
-    public ResponseEntity<List<Kanban>> listOpen() {
-        List <Kanban> list = service.findAllOpen();
-        return ResponseEntity.ok().body(list);
-    }
-
-    @GetMapping(value = "/fechadas")
-    public ResponseEntity<List<Kanban>> listClose() {
-        List <Kanban> list = service.findAllClose();
+    @GetMapping(value = "/target-column/{targetColumn}")
+    public ResponseEntity<List<Kanban>> listByTargetColumn(@PathVariable String targetColumn) {
+        List <Kanban> list = service.findByTargetColumn(targetColumn);
         return ResponseEntity.ok().body(list);
     }
 

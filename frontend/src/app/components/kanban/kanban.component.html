@@ -9,16 +9,31 @@
       <div class="board-columns" cdkDropListGroup>
         <div class="board-column" *ngFor="let column of board.columns">
 
-          <div class="column-title">
-            {{ column.name }}
-          </div>
+          <ng-template [ngIf]="column.name == 'Triagem'" [ngIfElse]="notScreening">
+            <div class="column-title">
+              {{ column.name }}
+              <a class="add-card" (click)="addCard()"><mat-icon class="icon-add">add</mat-icon></a>
+            </div>
+          </ng-template>
+          <ng-template #notScreening>
+            <div class="column-title">
+              {{ column.name }}
+            </div>
+          </ng-template>
 
           <div class="tasks-container"
           cdkDropList
           [cdkDropListData]="column.tasks"
           (cdkDropListDropped)="drop($event)">
-            <div class="task" *ngFor="let item of column.tasks" cdkDrag>
-              {{ item }}
+            <div class="task" *ngFor="let item of column.tasks" cdkDrag #card>
+              <div class="card-container">
+                <a (click)="removeCard(card, item.id, column.tasks)" class="delete-card"><mat-icon>delete_forever</mat-icon></a>
+                <a class="edit-card"><mat-icon>edit</mat-icon></a>
+                <p><b><mat-icon class="custom-icon">person</mat-icon></b> <span class="custom-text">{{ item.nome }}</span></p>
+                <p><b><mat-icon class="custom-icon">mail</mat-icon></b> <span class="custom-text">{{ item.email }}</span> </p>
+                <p><b><mat-icon class="custom-icon">comment</mat-icon></b> <span class="custom-text">{{ item.descricao }}</span></p>
+                <p><b><mat-icon class="custom-icon">calendar_today</mat-icon></b> <span class="custom-text">{{ item.dataParaFinalizar }}</span></p>
+              </div>
             </div>
           </div>
         </div>

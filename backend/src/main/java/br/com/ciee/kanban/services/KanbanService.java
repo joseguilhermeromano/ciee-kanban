@@ -19,13 +19,8 @@ public class KanbanService {
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado Id: " + id + " " + Kanban.class.getName()));
     }
 
-    public List<Kanban> findAllOpen() {
-        List<Kanban> list = repository.findAllOpen();
-        return list;
-    }
-
-    public List<Kanban> findAllClose() {
-        List<Kanban> list = repository.findAllClose();
+    public List<Kanban> findByTargetColumn(String targetColumn) {
+        List<Kanban> list = repository.findByTargetColumn(targetColumn);
         return list;
     }
 
@@ -45,7 +40,10 @@ public class KanbanService {
 
     public Kanban update(Integer id, Kanban obj) {
         Kanban newObj = findById(id);
-        newObj.setTitulo(obj.getTitulo());
+        newObj.setNome(obj.getNome());
+        newObj.setEmail(obj.getEmail());
+        newObj.setTargetColumn(obj.getTargetColumn());
+        newObj.setPositionColumn(obj.getPositionColumn());
         newObj.setDataParaFinalizar(obj.getDataParaFinalizar());
         newObj.setDescricao(obj.getDescricao());
         newObj.setFinalizado(obj.getFinalizado());

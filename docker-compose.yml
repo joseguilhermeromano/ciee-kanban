@@ -11,7 +11,7 @@ services:
       - 8080:8080
     networks:
       - netCieeLocal  
-    # command: /bin/sh -c "mvn package && java -jar target/kanban-1.0-SNAPSHOT.jar"
+    command: /bin/sh -c "mvn package && java -jar target/kanban-1.0-SNAPSHOT.jar"
 
   frontend:
     build:
@@ -21,14 +21,10 @@ services:
     ports:
       - 4200:4200
     volumes:
-      - ./frontend:/app:rw
-      - node_modules:/app/node_modules:rw
+      - ./frontend:/usr/src/app/
     networks:
       - netCieeLocal
-    command: /bin/sh -c "npm install && ng serve --port 4200 --host 0.0.0.0"
 
-volumes:
-  node_modules:
 
 networks:
   netCieeLocal:

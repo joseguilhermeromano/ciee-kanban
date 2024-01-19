@@ -6,7 +6,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import javax.persistence.Column;
 
 @Entity
 public class Kanban implements Serializable {
@@ -16,20 +19,27 @@ public class Kanban implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String titulo;
+    private String nome;
+    private String email;
     private String descricao;
-    private LocalDateTime dataParaFinalizar;
+    @Column(name = "data_para_finalizar", columnDefinition = "DATE")
+    private LocalDate dataParaFinalizar;
+    private String targetColumn;
+    private Integer positionColumn;
     private Boolean finalizado = false;
 
     public Kanban() {
         super();
     }
 
-    public Kanban(Integer id, String titulo, String descricao, LocalDateTime dataParaFinalizar, Boolean finalizado) {
+    public Kanban(Integer id, String nome, String email, String descricao, LocalDate dataParaFinalizar,String targetColumn, Integer positionColumn, Boolean finalizado) {
         this.id = id;
-        this.titulo = titulo;
+        this.nome = nome;
+        this.email = email;
         this.descricao = descricao;
         this.dataParaFinalizar = dataParaFinalizar;
+        this.targetColumn = targetColumn;
+        this.positionColumn = positionColumn;
         this.finalizado = finalizado;
     }
 
@@ -41,12 +51,20 @@ public class Kanban implements Serializable {
         this.id = id;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getNome() {
+        return nome;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getDescricao() {
@@ -57,12 +75,28 @@ public class Kanban implements Serializable {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getDataParaFinalizar() {
+    public LocalDate getDataParaFinalizar() {
         return dataParaFinalizar;
     }
 
-    public void setDataParaFinalizar(LocalDateTime dataParaFinalizar) {
+    public void setDataParaFinalizar(LocalDate dataParaFinalizar) {
         this.dataParaFinalizar = dataParaFinalizar;
+    }
+
+    public String getTargetColumn() {
+        return targetColumn;
+    }
+
+    public void setTargetColumn(String targetColumn) {
+        this.targetColumn = targetColumn;
+    }
+
+    public Integer getPositionColumn() {
+        return positionColumn;
+    }
+
+    public void setPositionColumn(Integer positionColumn) {
+        this.positionColumn = positionColumn;
     }
 
     public Boolean getFinalizado() {
@@ -96,5 +130,11 @@ public class Kanban implements Serializable {
         }else if (!id.equals(other.id))
             return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return dataParaFinalizar.format(formatter);
     }
 }

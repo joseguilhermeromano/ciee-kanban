@@ -1,0 +1,28 @@
+.title{
+    color:#3f51b5; 
+}
+
+.icon{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+
+.btn-ok{
+    background-color: green;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-cancelar{
+    font-weight: bold;
+}
+
+.content{
+    width: 500px;
+}
+
+mat-form-field{
+    width: 90%;
+    margin-left: 20px;
+}

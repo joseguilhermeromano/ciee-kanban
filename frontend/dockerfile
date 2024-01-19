@@ -1,15 +1,17 @@
 # Use a imagem oficial do Node.js 21.5.0
 FROM node:21.0.0
 
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+COPY package.json . 
+
 # Instale o Angular CLI globalmente
+RUN npm cache clean --force    
 RUN npm install -g @angular/cli
+RUN npm install -g nodemon
 
-# Defina o diretório de trabalho no contêiner e ajuste as permissões
-RUN mkdir -p /app 
-WORKDIR /app
-
-# Copie todo o conteúdo do diretório atual para o diretório de trabalho no contêiner
 COPY . .
 
-# Exponha a porta do aplicativo (ajuste conforme necessário)
 EXPOSE 4200
+CMD ["nodemon", "--legacy-watch"]

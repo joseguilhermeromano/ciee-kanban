@@ -1,0 +1,38 @@
+<h1 mat-dialog-title  class="title"><mat-icon class="icon">add_box</mat-icon>Novo Cartão</h1>
+<div mat-dialog-content class="content">
+    <form class="add-card" [formGroup]="form">
+        <div>
+          <mat-icon class="custom-icon">person</mat-icon>
+          <mat-form-field>
+            <input matInput placeholder="Nome" type="text" formControlName="nome">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-icon class="custom-icon">mail</mat-icon>
+          <mat-form-field>
+            <input matInput placeholder="Email" type="text" formControlName="email">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-icon class="custom-icon">comment</mat-icon>
+          <mat-form-field>
+            <input matInput placeholder="Descrição" type="text" formControlName="descricao">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-icon class="custom-icon">calendar_today</mat-icon>
+          <mat-form-field>
+            <input matInput [matDatepicker]="dp" placeholder="Data Finalização" type="text" formControlName="data_para_finalizar">
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="form.value" class="btn-ok"><mat-icon>check</mat-icon>Salvar</button>
+    <button mat-raised-button [mat-dialog-close]="false" class="btn-cancelar"><mat-icon>close</mat-icon>Cancelar</button>
+</div>
